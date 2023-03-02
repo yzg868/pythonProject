@@ -28,17 +28,17 @@ def download_finance_data():
             break
         ts_code = stock['ts_code']
         # 获取利润表数据
-        income_df = pro.income(ts_code=ts_code, start_date='20220101', end_date=now.strftime('%Y%m%d'))
+        income_df = pro.income(ts_code=ts_code, start_date='20220201', end_date=now.strftime('%Y%m%d'))
         income_df.fillna('NULL', inplace=True)  # 将空内容替换为NULL
         income_data = pd.concat([income_data, income_df], ignore_index=True)
 
         # 获取资产负债表数据
-        balance_df = pro.balancesheet(ts_code=ts_code, start_date='20220101', end_date=now.strftime('%Y%m%d'))
+        balance_df = pro.balancesheet(ts_code=ts_code, start_date='20220201', end_date=now.strftime('%Y%m%d'))
         balance_df.fillna('NULL', inplace=True)  # 将空内容替换为NULL
         balance_data = pd.concat([balance_data, balance_df], ignore_index=True)
 
         # 获取现金流量表数据
-        cashflow_df = pro.cashflow(ts_code=ts_code, start_date='20220101', end_date=now.strftime('%Y%m%d'))
+        cashflow_df = pro.cashflow(ts_code=ts_code, start_date='20220201', end_date=now.strftime('%Y%m%d'))
         cashflow_df.fillna('NULL', inplace=True)  # 将空内容替换为NULL
         cashflow_data = pd.concat([cashflow_data, cashflow_df], ignore_index=True)
 
@@ -57,7 +57,7 @@ def download_finance_data():
     print("Finished downloading finance data at", datetime.datetime.now())
 
 # 设置定时任务
-schedule.every().day.at('21:53').do(download_finance_data)
+schedule.every().day.at('20:30').do(download_finance_data)
 
 while True:
     schedule.run_pending()

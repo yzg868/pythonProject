@@ -20,20 +20,20 @@ for i, stock in stock_list.iterrows():
     ts_code = stock['ts_code']
 
     # 获取日K线数据
-    daily_k_df = pro.daily(ts_code=ts_code, start_date='20000101', end_date='20230223')
+    daily_k_df = pro.daily(ts_code=ts_code, start_date='20230225', end_date='20230228')
     daily_k_df.fillna('NULL', inplace=True)  # 将空内容替换为NULL
     daily_k_df.rename(columns={'change': 'chg'}, inplace=True)  # 将change列重命名为chg
     daily_k_data = pd.concat([daily_k_data, daily_k_df], ignore_index=True)
     print(i / len(stock_list) * 100, '%')
 
     # 获取周K线数据
-    weekly_k_df = pro.weekly(ts_code=ts_code, start_date='20000101', end_date='20230223')
+    weekly_k_df = pro.weekly(ts_code=ts_code, start_date='20230225', end_date='20230228')
     weekly_k_df.fillna('NULL', inplace=True)  # 将空内容替换为NULL
     weekly_k_df.rename(columns={'change': 'chg'}, inplace=True)  # 将change列重命名为chg
     weekly_k_data = pd.concat([weekly_k_data, weekly_k_df], ignore_index=True)
 
     # 获取月K线数据
-    monthly_k_df = pro.monthly(ts_code=ts_code, start_date='20000101', end_date='20230223')
+    monthly_k_df = pro.monthly(ts_code=ts_code, start_date='20230225', end_date='20230228')
     monthly_k_df.fillna('NULL', inplace=True)  # 将空内容替换为NULL
     monthly_k_df.rename(columns={'change': 'chg'}, inplace=True)  # 将change列重命名为chg
     monthly_k_data = pd.concat([monthly_k_data, monthly_k_df], ignore_index=True)
