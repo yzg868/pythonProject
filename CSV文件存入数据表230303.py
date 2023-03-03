@@ -40,4 +40,11 @@ def insert_data_to_mysql(filename):
     connection.commit()
 
 insert_data_to_mysql('利润表')
+insert_data_to_mysql('财务指标数据表')
+insert_data_to_mysql('现金流量表')
+insert_data_to_mysql('资产负债表')
+insert_data_to_mysql('日K线数据表')
+insert_data_to_mysql('周K线数据表')
+insert_data_to_mysql('月K线数据表')
+
 
