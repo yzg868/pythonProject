@@ -22,8 +22,8 @@ CREATE TABLE IF NOT EXISTS cwsj2 (
     eps FLOAT,
     PRIMARY KEY(ts_code, ann_date),
     UNIQUE(ts_code, ann_date)
-)
-"""
+)"""
+
 cursor.execute(create_table_query)
 
 # 将DataFrame数据插入到MySQL表中

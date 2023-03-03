@@ -100,5 +100,6 @@ print("Finished downloading finance data at", datetime.datetime.now())
 
 # 将本次下载日期保存到csv文件中
 df_last_download_date.iloc[0, 0] = now.strftime('%Y-%m-%d')
-df_last_download_date.to_csv('c:\gupia\中间文件\上次下载日期.csv', index=False)
+df_last_download_date.to_csv(r'c:/gupia/中间文件/上次下载日期.csv', index=False)
+
 
