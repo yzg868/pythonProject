@@ -38,6 +38,8 @@ def insert_data_to_mysql(filename):
 
     # 提交更改
     connection.commit()
+    cursor.close()
+    connection.close()
 
 insert_data_to_mysql('利润表')
 insert_data_to_mysql('财务指标数据表')
