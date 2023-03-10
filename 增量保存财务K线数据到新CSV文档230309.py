@@ -33,12 +33,19 @@ print("Start downloading finance data at", now)
 
 # 初始化数据框
 income_data = pd.DataFrame()
+income_new = pd.DataFrame()
 balance_data = pd.DataFrame()
+balance_new = pd.DataFrame()
 cashflow_data = pd.DataFrame()
+cashflow_new = pd.DataFrame()
 finance_data = pd.DataFrame()
+finance_new = pd.DataFrame()
 daily_k_data = pd.DataFrame()
+daily_k_new = pd.DataFrame()
 weekly_k_data = pd.DataFrame()
+weekly_k_new = pd.DataFrame()
 monthly_k_data = pd.DataFrame()
+monthly_k_new = pd.DataFrame()
 
 # 遍历每支股票，获取财务数据
 for i, stock in stock_list.iterrows():
@@ -69,7 +76,7 @@ for i, stock in stock_list.iterrows():
     daily_k_df = pro.daily(ts_code=ts_code, start_date=start_date_str, end_date=now.strftime('%Y%m%d'))
     daily_k_df.fillna('NULL', inplace=True)  # 将空内容替换为NULL
     daily_k_df.rename(columns={'change': 'chg'}, inplace=True)  # 将change列重命名为chg
-    daily_k_data = pd.concat([daily_k_data, daily_k_df], ignore_index=True)
+    daily_k_new = pd.concat([daily_k_new, daily_k_df], ignore_index=True)
     print(i / len(stock_list) * 100, '%')
 
     # 获取周K线数据
@@ -89,49 +96,71 @@ for i, stock in stock_list.iterrows():
 # 读取原有利润表文件
 income_old = pd.read_csv('c:/gupia/利润表.csv')
 # 连接两个数据框并删除重复记录
-income_data = pd.concat([income_old, income_data]).drop_duplicates()
+income_data = pd.concat([income_old, income_data])
+income_data.drop_duplicates(inplace=True)
+# 根据前两列进行降序排序
+income_data = income_data.sort_values(by=[income_data.columns[0], income_data.columns[1]], ascending=[True, False])
 # 存储到合并利润表文件
 income_data.to_csv('C:/gupia/利润表.csv', index=False)
 
 # 读取原有资产负债表文件
 balance_old = pd.read_csv('c:/gupia/资产负债表.csv')
 # 连接两个数据框并删除重复记录
-balance_data = pd.concat([balance_old, balance_data]).drop_duplicates()
+balance_data = pd.concat([balance_old, balance_data])
+balance_data.drop_duplicates(inplace=True)
+# 根据前两列进行降序排序
+balance_data = balance_data.sort_values(by=[balance_data.columns[0], balance_data.columns[1]], ascending=[True, False])
 # 存储到合并资产负债表文件
 balance_data.to_csv('C:/gupia/资产负债表.csv', index=False)
 
 # 读取原有现金流量表文件
 cashflow_old = pd.read_csv('c:/gupia/现金流量表.csv')
 # 连接两个数据框并删除重复记录
-cashflow_data = pd.concat([cashflow_old, cashflow_data]).drop_duplicates()
+cashflow_data = pd.concat([cashflow_old, cashflow_data])
+cashflow_data.drop_duplicates(inplace=True)
+# 根据前两列进行降序排序
+cashflow_data = cashflow_data.sort_values(by=[cashflow_data.columns[0], cashflow_data.columns[1]], ascending=[True, False])
 # 存储到合并现金流量表文件
 cashflow_data.to_csv('C:/gupia/现金流量表.csv', index=False)
 
 # 读取原有财务指标数据表文件
 finance_old = pd.read_csv('c:/gupia/财务指标数据表.csv')
 # 连接两个数据框并删除重复记录
-finance_data = pd.concat([finance_old, finance_data]).drop_duplicates()
+finance_data = pd.concat([finance_old, finance_data])
+finance_data.drop_duplicates(inplace=True)
+# 根据前两列进行降序排序
+finance_data = finance_data.sort_values(by=[finance_data.columns[0], finance_data.columns[1]], ascending=[True, False])
 # 存储到合并财务指标数据表文件
 finance_data.to_csv('C:/gupia/财务指标数据表.csv', index=False)
 
 # 读取原有日K线数据表文件
 daily_k_old = pd.read_csv('c:/gupia/日K线数据表.csv')
 # 连接两个数据框并删除重复记录
-daily_k_data = pd.concat([daily_k_old, daily_k_data]).drop_duplicates()
+daily_k_data = pd.concat([daily_k_new, daily_k_old])
+daily_k_data.drop_duplicates(inplace=True)
+
+# 根据前两列进行降序排序
+daily_k_data = daily_k_data.sort_values(by=[daily_k_data.columns[0], daily_k_data.columns[1]], ascending=[True, False])
 # 存储到合并日K线数据表文件
 daily_k_data.to_csv('C:/gupia/日K线数据表.csv', index=False)
 
 # 读取原有周K线数据表文件
 weekly_k_old = pd.read_csv('c:/gupia/周K线数据表.csv')
 # 连接两个数据框并删除重复记录
-weekly_k_data = pd.concat([weekly_k_old, weekly_k_data]).drop_duplicates()
+weekly_k_data = pd.concat([weekly_k_old, weekly_k_data])
+weekly_k_data.drop_duplicates(inplace=True)
+# 根据前两列进行降序排序
+weekly_k_data = weekly_k_data.sort_values(by=[weekly_k_data.columns[0], weekly_k_data.columns[1]], ascending=[True, False])
 # 存储到合并周K线数据表文件
 weekly_k_data.to_csv('C:/gupia/周K线数据表.csv', index=False)
 
 # 读取原有月K线数据表文件
 monthly_k_old = pd.read_csv('c:/gupia/月K线数据表.csv')
 # 连接两个数据框并删除重复记录
-monthly_k_data = pd.concat([monthly_k_old, monthly_k_data]).drop_duplicates()
+monthly_k_data = pd.concat([monthly_k_old, monthly_k_data])
+monthly_k_data.drop_duplicates(inplace=True)
+# 根据前两列进行降序排序
+monthly_k_data = monthly_k_data.sort_values(by=[monthly_k_data.columns[0], monthly_k_data.columns[1]], ascending=[True, False])
 # 存储到合并周K线数据表文件
 monthly_k_data.to_csv('C:/gupia/月K线数据表.csv', index=False)
 
