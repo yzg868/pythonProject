@@ -29,8 +29,8 @@ merged_data = merged_data[
     (merged_data["trade_date"] < merged_data["next_ann_date"])
 ]
 
-# 提取并重命名字段
-merged_data = merged_data[["trade_date", "open", "high", "low", "close", "vol", "basic_eps"]]
+# 提取并重命名字段，保留 ts_code
+merged_data = merged_data[["ts_code", "trade_date", "open", "high", "low", "close", "vol", "basic_eps"]]
 merged_data = merged_data.rename(columns={
     "trade_date": "datetime",
     "vol": "volume",
