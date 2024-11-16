@@ -17,7 +17,7 @@ db = client['stock']
 download_record = db["download_record"]
 
 # 定义初始日期
-start_date_init = '20000101'  # 可以是任意日期字符串，也可以是空字符串
+start_date_init = '20241102'  # 可以是任意日期字符串，也可以是空字符串
 if start_date_init:
     start_date = start_date_init
 else:
@@ -28,7 +28,7 @@ else:
         print(start_date)
         exit()
     else:
-        start_date = '20200101'  # 如果是第一次下载，则从2020年1月1日开始下载
+        start_date = '20241102'  # 如果是第一次下载，则从2024年11月2日开始下载
 
 
 # 创建名为income_statement、balance_sheet、cash_flow、financial_indicator、daily_k_data、weekly_k_data、monthly_k_data的集合
